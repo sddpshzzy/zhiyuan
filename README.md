@@ -23,3 +23,9 @@ pip install -r requirements.txt
 python scripts/quick_test.py
 
 Outputs are written to `results/`, including `quick_test_metrics.json`.
+## Quick test
+
+pip install -r requirements.txt
+python scripts/quick_test.py
+
+Outputs are written to `results/`, including `quick_test_metrics.json`.
