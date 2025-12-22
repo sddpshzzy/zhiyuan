@@ -19,12 +19,4 @@ jobs:
       - name: Run quick test
         run: |
           python scripts/quick_test.py
-# 8) PASS/FAIL criterion (simple, not overstrict)
-# Fusion should not be worse than ML on this synthetic dataset
-passed = (rmse_f <= rmse_ml + 1e-9) and (r2_f >= r2_ml - 1e-9)
 
-print("Quick-test summary:", summary)
-print("PASS" if passed else "FAIL")
-
-# Exit code: non-zero if fail (helps CI)
-raise SystemExit(0 if passed else 1)
