@@ -1,6 +1,6 @@
-numpy
-pandas
+numpy<2
+scipy<2
 scikit-learn
-xgboost
+xgboost>=2.0.0
 pykrige
 matplotlib
