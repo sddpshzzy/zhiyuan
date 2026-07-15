@@ -1,0 +1,20 @@
+{
+  "random_seed": 20260715,
+  "outer_folds": 5,
+  "inner_folds": 4,
+  "spatial_blocks": 5,
+  "high_grade_quantile": 0.9,
+  "kriging": {
+    "variogram_model": "exponential",
+    "vertical_scale_candidates": [1.0, 2.0, 4.0],
+    "neighbor_candidates": [16, 24],
+    "variogram_pair_sample": 40000,
+    "variogram_bins": 14
+  },
+  "xgboost_grid": [
+    {"max_depth": 3, "learning_rate": 0.03, "n_estimators": 400, "min_child_weight": 5, "subsample": 0.8, "colsample_bytree": 0.8},
+    {"max_depth": 4, "learning_rate": 0.03, "n_estimators": 400, "min_child_weight": 5, "subsample": 0.8, "colsample_bytree": 0.8},
+    {"max_depth": 3, "learning_rate": 0.05, "n_estimators": 300, "min_child_weight": 3, "subsample": 0.85, "colsample_bytree": 0.85},
+    {"max_depth": 5, "learning_rate": 0.025, "n_estimators": 500, "min_child_weight": 8, "subsample": 0.8, "colsample_bytree": 0.8}
+  ]
+}

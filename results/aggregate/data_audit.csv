@@ -1,0 +1,13 @@
+item,value
+assay_interval_count,1000.0
+assayed_drillhole_count,29.0
+assayed_length_m,2880.38
+missing_TFe_count,0.0
+duplicate_interval_count,0.0
+lithology_midpoint_missing_count,0.0
+TFe_mean,25.63892
+TFe_std,6.651104556795468
+TFe_min,2.78
+TFe_max,46.73
+spatial_block_count,5.0
+max_horizontal_deviation_m,183.89470811206584

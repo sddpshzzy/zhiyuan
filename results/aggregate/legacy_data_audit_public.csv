@@ -1,0 +1,12 @@
+item,value
+original_assay_intervals,1000
+original_assayed_holes,29
+legacy_discretized_assayed_rows,3524
+legacy_processed_rows,16555
+legacy_processed_holes,32
+global_mean_fill_value,26.116804767309876
+global_mean_filled_rows,13031
+global_mean_filled_percent,78.7133796436122
+rows_corresponding_to_discretized_assays,3524
+unassayed_extra_hole_count,3
+rows_in_unassayed_extra_holes,1237

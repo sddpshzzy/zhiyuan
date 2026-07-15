@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+.venv/
+node_modules/
+node_modules
+.DS_Store
+*.pyc
+data/*.xlsx
+data/*.csv
+results/private/
+*clean_assay_intervals_confidential.csv
+*oof_predictions.csv
+*feature_ablation_predictions.csv
