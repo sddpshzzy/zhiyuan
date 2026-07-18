@@ -1,8 +1,15 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import pytest
+
+PACKAGE_SRC = Path(__file__).resolve().parents[1] / "src"
+if str(PACKAGE_SRC) not in sys.path:
+    sys.path.insert(0, str(PACKAGE_SRC))
 
 from article2xg import (
     assert_disjoint_groups,
@@ -39,4 +46,3 @@ def test_validation_guards_reject_overlap_and_target_names() -> None:
         assert_disjoint_groups(train, test)
     with pytest.raises(ValueError, match="forbidden"):
         assert_no_forbidden_features(["x", "neighbour_TFe_mean"])
-
