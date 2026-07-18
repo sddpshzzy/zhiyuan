@@ -1,0 +1,8 @@
+check,value,expected,pass
+prediction_combo_count,20,20,1
+every_interval_predicted_once_per_combo,20,20,1
+finite_predictions,191840,191840,1
+no_outer_physical_group_overlap,0,0,1
+held_out_exact_lithology_masked,0,0,1
+no_forbidden_feature_names,0,0,1
+cvoca_channels_exclude_TFe,0,0,1
