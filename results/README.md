@@ -13,7 +13,11 @@ This directory contains aggregate outputs from the corrected experiment.
 - `aggregate/variogram_parameters.csv`: fold-selected aggregate variogram settings
 - `aggregate/timings.csv`: fold execution times
 - `figures/`: aggregate comparison, ablation, distance, and variability figures
+- `supplementary/sijiaying_external_metrics.csv`: development and one-shot blind aggregate metrics
+- `supplementary/failure_simulation_summary.csv`: seven scenarios by deployable/nondeployable method
+- `supplementary/three_dimensional_entity_eligibility.csv`: provenance-based entity decisions
+- `supplementary/independent_validation.csv`: 27 independent recomputation checks
 
 ## Excluded
 
-Raw workbooks, source manifests, clean interval tables, drillhole-level metrics, interval-level predictions, coordinate plots, and observed-versus-predicted row clouds are intentionally excluded because the mine data are confidential.
+Raw workbooks and MDB files, clean interval tables, hole-level partitions, drillhole-level metrics, interval-level predictions, coordinate plots, and observed-versus-predicted row clouds are intentionally excluded because the mine data are confidential.

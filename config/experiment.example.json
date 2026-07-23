@@ -1,0 +1,4 @@
+{
+  "source_mdb": "/absolute/path/to/private/qidashan_source.mdb",
+  "note": "Copy this file to config/experiment.json locally. Never commit the private MDB or mine coordinates."
+}

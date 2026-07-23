@@ -1,0 +1,69 @@
+{
+  "contract_version": "2026-07-23-v1",
+  "status": "FROZEN_BEFORE_SIMULATION_RESULTS",
+  "purpose": "Explain when geostatistical, machine-learning and residual-fusion strategies succeed or fail under spatial extrapolation.",
+  "geometry": {
+    "primary": "Use de-identified Qidashan assay coordinates and frozen five-block assignments.",
+    "replicates_per_scenario": 30,
+    "random_seed_start": 20260723
+  },
+  "scenarios": [
+    {
+      "code": "S0_stationary",
+      "mechanism": "Stationary anisotropic Gaussian random field with correctly specified trend and covariance."
+    },
+    {
+      "code": "S1_anisotropy_misspecified",
+      "mechanism": "Strong directional anisotropy while prediction assumes the frozen isotropic/z-scaled distance."
+    },
+    {
+      "code": "S2_domain_mean_shift",
+      "mechanism": "Contiguous geological domains with abrupt mean shifts and no domain indicator."
+    },
+    {
+      "code": "S3_fault_offset",
+      "mechanism": "A fault plane offsets the latent field and changes local continuity."
+    },
+    {
+      "code": "S4_support_mismatch",
+      "mechanism": "Latent point support is averaged over variable interval lengths while models use midpoint features."
+    },
+    {
+      "code": "S5_sparse_far_extrapolation",
+      "mechanism": "Continuity range is shorter than the distance from the held-out sector to training support."
+    },
+    {
+      "code": "S6_target_leakage",
+      "mechanism": "A target-derived neighbourhood feature is added as an explicitly nondeployable positive control."
+    }
+  ],
+  "methods": {
+    "M0_mean": "Outer-training mean.",
+    "M1_idw": "Frozen local IDW: k=8, power=2, z_scale=0.25.",
+    "M2_ordinary_kriging": "Local ordinary kriging with exponential variogram fitted on outer-training targets; k=24, z_scale=0.25.",
+    "M3_catboost_coordinates": "Fixed CatBoost on coordinate and trajectory/support features.",
+    "M4_crossfitted_residual_kriging": "Fixed CatBoost trend plus residual kriging from spatially cross-fitted outer-training residuals.",
+    "M5_leakage_positive_control": "Only in S6; explicitly nondeployable."
+  },
+  "validation": {
+    "outer_scheme": "the frozen five contiguous spatial blocks",
+    "inner_residual_scheme": "three-fold spatial-group cross-fitting inside each outer-training set",
+    "primary_metrics": [
+      "pooled R2",
+      "RMSE",
+      "bias"
+    ],
+    "boundary_metrics": [
+      "farthest-quartile R2",
+      "fold R2 standard deviation",
+      "probability Delta R2 positive across replicates"
+    ]
+  },
+  "hypotheses": {
+    "H1": "Ordinary and residual kriging help in S0 when covariance is transferable.",
+    "H2": "Residual fusion loses benefit or becomes harmful under S1-S5.",
+    "H3": "Random or target-leaking validation produces inflated accuracy in S6.",
+    "H4": "No single method dominates all mechanisms."
+  },
+  "selection_policy": "No scenario, replicate, method or result may be removed because of unfavourable performance."
+}

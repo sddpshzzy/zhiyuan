@@ -1,0 +1,30 @@
+{
+  "freeze_version": "2026-07-23-v1",
+  "status": "FROZEN_BEFORE_RUNNING_ANY_QIDASHAN_GEOMETRY_SIMULATION",
+  "contract_path": "config/failure_mechanism_simulation_contract_20260723.json",
+  "code_path": "run_failure_mechanism_simulation.py",
+  "code_sha256": "d165b4bb9759129f998f295b4a4c2d996c1ee8dc4dc3adbd7efd7c9ffaa1decb",
+  "geometry_source_sha256": "b38ed23be00a6e05ecc64b997e4b8ecc4675106c3309595daab74d18e852cd6a",
+  "representative_rule": "Select exactly one assay midpoint nearest the median measured depth of every frozen 5 m physical-hole group; retain its pre-existing contiguous spatial-block label and do not export mine coordinates.",
+  "simulation_point_count_policy": "All eligible physical-hole groups; no point may be removed based on a simulated result.",
+  "catboost": {
+    "depth": 5,
+    "learning_rate": 0.08,
+    "iterations": 60,
+    "l2_leaf_reg": 8.0,
+    "thread_count": 1
+  },
+  "kriging": {
+    "variogram": "exponential",
+    "z_scale": 0.25,
+    "neighbours": 24,
+    "maximum_pairs": 5000,
+    "bins": 10
+  },
+  "residual_crossfitting": {
+    "inner_folds": 3,
+    "groups": "outer-training spatial blocks"
+  },
+  "random_seed": 20260723,
+  "reporting_policy": "Retain every scenario, replicate, method and fallback; report pooled, fold, far-quartile and paired-delta results."
+}

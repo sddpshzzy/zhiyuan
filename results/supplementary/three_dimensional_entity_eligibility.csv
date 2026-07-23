@@ -1,0 +1,4 @@
+deposit,candidate,authoritative,target_independent,eligible,decision
+Qidashan,CAD-constrained closed ore-domain proxy,0,1,0,Source-derived proxy; retain as sensitivity only
+Sijiaying/Jiajiabao,20.4% staged bench/block model,0,0,0,Grade-threshold planning output; exclude from blind features
+Sijiaying/Jiajiabao,Native interval lithology and survey logs,1,1,1,Use after development ΔR² gate; evaluated once in blind block
