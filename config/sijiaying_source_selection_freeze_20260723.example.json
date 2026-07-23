@@ -1,0 +1,26 @@
+{
+  "freeze_version": "2026-07-23-v1",
+  "status": "FROZEN_BEFORE_READING_ASSAY_OR_LITHOLOGY_VALUES",
+  "selected_source": {
+    "path": "/absolute/path/to/private/sijiaying_drillhole_database.mdb",
+    "sha256": "6d2b8d5ce657f9bfadca1ae336f152f96a709b8003ff6fda9e4b988cc1eb75a4",
+    "native_format": "Microsoft Access / 3DMine drillhole database",
+    "table_counts": {
+      "collar": 71,
+      "survey": 670,
+      "lithology": 1806,
+      "assay": 2288
+    }
+  },
+  "blind_partition_freeze": {
+    "rule": "int(selected_source.sha256[0:8], 16) mod 5",
+    "selected_blind_block_index_zero_based": 0,
+    "number_of_contiguous_blocks": 5,
+    "block_construction": "PCA ordering of physical-hole collar coordinates followed by cumulative assay-support balancing; target columns remain excluded during partitioning."
+  },
+  "entity_route": {
+    "candidate": "withheld target-derived 20.4% staged bench/block model",
+    "eligibility_status": "INELIGIBLE_AS_INDEPENDENT_PREDICTOR",
+    "reason": "The staged/block model is grade-threshold labelled and contains target-derived planning outputs."
+  }
+}

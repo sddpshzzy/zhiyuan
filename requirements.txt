@@ -1,6 +1,10 @@
-numpy<2
-scipy<2
-scikit-learn
-xgboost>=2.0.0
-pykrige
-matplotlib
+numpy==2.2.6
+pandas==2.3.0
+scipy==1.15.2
+scikit-learn==1.7.0
+xgboost==3.0.4
+catboost==1.2.10
+openpyxl==3.1.5
+matplotlib==3.10.1
+seaborn==0.13.2
+pytest>=8.0,<9.0

@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+node_modules/
+node_modules
+.DS_Store
+data/*.xlsx
+data/*.csv
+results/private/
+*clean_assay_intervals_confidential.csv
+*oof_predictions.csv
+*feature_ablation_predictions.csv
+
+# Confidential local data bindings. Public templates are committed separately.
+config/experiment.json
+config/sijiaying_source_selection_freeze_20260723.json
+
+# Row-level mine outputs must remain local.
+results/sijiaying_blind_external/
+results/failure_mechanism_simulation/

@@ -1,0 +1,119 @@
+{
+  "contract_version": "2026-07-23-v1",
+  "status": "FROZEN_BEFORE_READING_SIJIAYING_ASSAY_VALUES",
+  "purpose": "Independent-deposit replication and a genuinely unseen contiguous spatial sector.",
+  "source_selection": {
+    "candidate_rule": "Select the most complete native Sijiaying drillhole database by schema, row counts, coordinate validity and source lineage; do not use grade values or predictive metrics.",
+    "duplicate_rule": "Hash-identical files and boundary-scenario derivatives are not independent deposits.",
+    "prohibited_sources": [
+      "model predictions",
+      "block models created from the candidate target values",
+      "grade-threshold boundary optimisation outputs used as predictors"
+    ]
+  },
+  "blind_partition": {
+    "allowed_fields_before_freeze": [
+      "hole identifier",
+      "collar x",
+      "collar y",
+      "collar z",
+      "survey depth",
+      "azimuth",
+      "dip",
+      "file metadata",
+      "table and column names"
+    ],
+    "prohibited_fields_before_freeze": [
+      "TFe",
+      "FeO",
+      "SFe",
+      "magnetic susceptibility",
+      "any grade or target-derived domain",
+      "model prediction",
+      "residual"
+    ],
+    "physical_group_rule": "Collars within 5 m are one physical-hole group.",
+    "axis_rule": "Project collar coordinates onto the first principal horizontal axis.",
+    "block_rule": "Create five contiguous blocks by cumulative assay-support count after target fields remain hidden.",
+    "blind_block_rule": "blind_block_index = int(source_sha256[0:8], 16) mod 5",
+    "development_blocks": "the remaining four blocks",
+    "target_opening_rule": "Open blind target values exactly once after the source, row linkage, feature contract, code hash and development decision have been frozen."
+  },
+  "prediction_contracts": {
+    "E0_common_geometry": [
+      "x",
+      "y",
+      "z",
+      "collar_x",
+      "collar_y",
+      "collar_z",
+      "max_depth",
+      "from",
+      "to",
+      "length",
+      "mid_depth",
+      "depth_ratio",
+      "azimuth_sin",
+      "azimuth_cos",
+      "dip_sin",
+      "dip_cos"
+    ],
+    "E1_plus_authoritative_entity": [
+      "entity_signed_boundary_distance_m",
+      "entity_inside_indicator",
+      "entity_local_thickness_m",
+      "entity_top_distance_m",
+      "entity_bottom_distance_m",
+      "entity_hangingwall_footwall_score",
+      "entity_normal_east",
+      "entity_normal_north",
+      "entity_normal_vertical",
+      "entity_curvature",
+      "entity_fault_distance_m",
+      "entity_support_indicator"
+    ],
+    "entity_eligibility": "The entity must pre-date blind evaluation, have mine coordinates and authoritative lineage, and must not be reconstructed from blind TFe/FeO or model predictions."
+  },
+  "learner": {
+    "family": "CatBoostRegressor",
+    "loss_function": "RMSE",
+    "depth": 8,
+    "learning_rate": 0.05,
+    "iterations": 350,
+    "l2_leaf_reg": 8.0,
+    "random_seed": 20260723,
+    "hyperparameter_policy": "Fixed before blind target values are read."
+  },
+  "development_evaluation": {
+    "scheme": "leave-one-contiguous-development-block-out",
+    "primary_metric": "pooled R2",
+    "secondary_metrics": [
+      "RMSE",
+      "MAE",
+      "bias",
+      "farthest-quartile R2",
+      "high-grade bias"
+    ],
+    "entity_expansion_gate_delta_r2": 0.1
+  },
+  "blind_evaluation": {
+    "one_shot": true,
+    "no_refit_after_opening": true,
+    "success_reference": {
+      "delta_r2_point_estimate": 0.05,
+      "grouped_bootstrap_delta_r2_ci_lower": 0.0
+    },
+    "report_regardless_of_sign": true
+  },
+  "cross_deposit_evaluation": {
+    "replication": "Fit the frozen common contract on Sijiaying development blocks and evaluate once on its blind block.",
+    "zero_shot_transfer": "If units, assay support and target definition are harmonised, also train on Qidashan and predict Sijiaying without target-based retuning.",
+    "claim_rule": "A Qidashan-only entity increment is not called externally validated unless a homologous eligible entity is available at Sijiaying."
+  },
+  "stopping_rules": {
+    "if_no_raw_assay_and_trajectory_database": "Stop external grade-validation route.",
+    "if_no_eligible_authoritative_entity": "Run E0 replication only and label entity route unavailable.",
+    "if_development_delta_r2_below_0_1": "Do not use entity contract in the blind block.",
+    "after_blind_opening": "No model switching or parameter changes."
+  }
+}
